@@ -1,0 +1,13 @@
+<h2><%= @item.name %></h2>
+<div>
+  <%= link_to('Voltar', items_path) %>
+</div>
+<div>
+	<strong><%= Item.human_attribute_name(:description) %>:</strong> <%= @item.description %>
+	<strong><%= Item.human_attribute_name(:weight) %>:</strong> <%= @item.weight %> g
+	<strong>Dimensão:</strong> <%= "#{@item.width} cm x #{@item.height} cm x #{@item.depth} cm" %>
+	<strong><%= Item.human_attribute_name(:category) %>:</strong> <%= @item.category %> 
+</div>
+<div>
+  <%= image_tag(@item.image_url, :alt => "Imagem do item") %>
+</div>

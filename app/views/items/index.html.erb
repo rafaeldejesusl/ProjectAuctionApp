@@ -2,7 +2,7 @@
 
 <% @items.each do |i| %>
 	<div>
-    <h3><%= i.name %></h3>
+    <h3><%= link_to i.name, item_path(i.id) %></h3>
     <dl>
       <dt><%= Item.human_attribute_name(:code) %>:</dt>
       <dd><%= i.code %></dd>
