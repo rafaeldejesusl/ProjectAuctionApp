@@ -17,6 +17,7 @@ describe 'Usuário vê detalhes de um item' do
 
 		# Assert
 		expect(page).to have_content('Cadeira')
+    expect(page).to have_content('Código: XYZ9876543')
 		expect(page).to have_content('Descrição: Cadeira gamer')
 		expect(page).to have_content('Peso: 1200 g')
 		expect(page).to have_content('Dimensão: 50 cm x 85 cm x 50 cm')

@@ -3,6 +3,7 @@
   <%= link_to('Voltar', items_path) %>
 </div>
 <div>
+	<strong><%= Item.human_attribute_name(:code) %>:</strong> <%= @item.code %>
 	<strong><%= Item.human_attribute_name(:description) %>:</strong> <%= @item.description %>
 	<strong><%= Item.human_attribute_name(:weight) %>:</strong> <%= @item.weight %> g
 	<strong>Dimensão:</strong> <%= "#{@item.width} cm x #{@item.height} cm x #{@item.depth} cm" %>
