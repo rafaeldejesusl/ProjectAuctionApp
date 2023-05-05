@@ -1,0 +1,8 @@
+class ItemsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :is_admin?
+
+	def index
+    @items = Item.all
+	end
+end

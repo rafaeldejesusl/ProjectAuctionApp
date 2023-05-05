@@ -1,0 +1,17 @@
+<h2>Itens para Leilão</h2>
+
+<% @items.each do |i| %>
+	<div>
+    <h3><%= i.name %></h3>
+    <dl>
+      <dt><%= Item.human_attribute_name(:code) %>:</dt>
+      <dd><%= i.code %></dd>
+      <dt><%= Item.human_attribute_name(:category) %>:</dt>
+      <dd><%= i.category %></dd>
+    </dl>
+  </div>
+<% end %>
+
+<% if @items.empty? %>
+	<p>Não existem itens cadastrados</p>
+<% end %>
