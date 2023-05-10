@@ -1,0 +1,18 @@
+<h2>Lote <%= @lot.code %></h2>
+<div>
+  <%= link_to('Voltar', lots_path) %>
+</div>
+<div>
+	<strong><%= Item.human_attribute_name(:start_date) %>:</strong>
+  <%= I18n.localize(@lot.start_date) %>
+	<strong><%= Item.human_attribute_name(:end_date) %>:</strong>
+  <%= I18n.localize(@lot.end_date) %>
+	<strong><%= Item.human_attribute_name(:status) %>:</strong>
+  <%= I18n.translate(@lot.status) %>
+	<strong><%= Item.human_attribute_name(:minimum_value) %>:</strong>
+  <%= @lot.minimum_value %> R$
+  <strong><%= Item.human_attribute_name(:minimal_difference) %>:</strong>
+  <%= @lot.minimal_difference %> R$
+	<strong><%= Item.human_attribute_name(:created_by) %>:</strong>
+  <%= @lot.created_by.name %> 
+</div>

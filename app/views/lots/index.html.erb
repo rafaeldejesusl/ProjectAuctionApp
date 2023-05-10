@@ -2,7 +2,7 @@
 
 <% @lots.each do |l| %>
 	<div>
-    <h3>Lote <%= l.code %></h3>
+    <h3><%= link_to "Lote #{l.code}", lot_path(l.id) %></h3>
     <dl>
       <dt><%= Item.human_attribute_name(:start_date) %>:</dt>
       <dd><%= I18n.localize(l.start_date) %></dd>
