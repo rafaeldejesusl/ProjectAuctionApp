@@ -1,0 +1,19 @@
+<h2>Lotes</h2>
+
+<% @lots.each do |l| %>
+	<div>
+    <h3>Lote <%= l.code %></h3>
+    <dl>
+      <dt><%= Item.human_attribute_name(:start_date) %>:</dt>
+      <dd><%= I18n.localize(l.start_date) %></dd>
+      <dt><%= Item.human_attribute_name(:end_date) %>:</dt>
+      <dd><%= I18n.localize(l.end_date) %></dd>
+      <dt><%= Item.human_attribute_name(:status) %>:</dt>
+      <dd><%= I18n.translate(l.status) %></dd>
+    </dl>
+  </div>
+<% end %>
+
+<% if @lots.empty? %>
+	<p>Não existem lotes cadastrados</p>
+<% end %>

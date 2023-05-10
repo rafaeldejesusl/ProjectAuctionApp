@@ -1,0 +1,20 @@
+pt-BR:
+  pending: 'Pendente'
+  approved: 'Aprovado'
+  activerecord:
+    models:
+      lot:
+        one: "Lote"
+        other: "Lotes"
+    attributes:
+      item:
+        code: "Código"
+        start_date: "Data de Início"
+        end_date: "Data Limite"
+        minimun_value: "Valor Mínimo"
+        minimal_difference: "Diferença Mínima"
+        created_by: "Criado por"
+        created_by_id: "Criado por"
+        approved_by: "Aprovado por"
+        approved_by_id: "Aprovado por"
+        status: "Status"
