@@ -1,14 +1,16 @@
 <h2>Lotes</h2>
 
+<%= link_to 'Cadastrar Lote', new_lot_path %>
+
 <% @lots.each do |l| %>
 	<div>
     <h3><%= link_to "Lote #{l.code}", lot_path(l.id) %></h3>
     <dl>
-      <dt><%= Item.human_attribute_name(:start_date) %>:</dt>
+      <dt><%= Lot.human_attribute_name(:start_date) %>:</dt>
       <dd><%= I18n.localize(l.start_date) %></dd>
-      <dt><%= Item.human_attribute_name(:end_date) %>:</dt>
+      <dt><%= Lot.human_attribute_name(:end_date) %>:</dt>
       <dd><%= I18n.localize(l.end_date) %></dd>
-      <dt><%= Item.human_attribute_name(:status) %>:</dt>
+      <dt><%= Lot.human_attribute_name(:status) %>:</dt>
       <dd><%= I18n.translate(l.status) %></dd>
     </dl>
   </div>
