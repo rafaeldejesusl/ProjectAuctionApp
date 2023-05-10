@@ -53,7 +53,7 @@ describe 'Usuário visita tela de lotes' do
     expect(page).to have_content('Status: Aprovado')
 	end
 
-  it 'e não existem itens cadastrados' do
+  it 'e não existem lotes cadastrados' do
     # Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)

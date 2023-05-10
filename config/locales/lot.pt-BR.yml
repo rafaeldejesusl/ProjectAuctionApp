@@ -11,7 +11,7 @@ pt-BR:
         code: "Código"
         start_date: "Data de Início"
         end_date: "Data Limite"
-        minimun_value: "Valor Mínimo"
+        minimum_value: "Valor Mínimo"
         minimal_difference: "Diferença Mínima"
         created_by: "Criado por"
         created_by_id: "Criado por"
