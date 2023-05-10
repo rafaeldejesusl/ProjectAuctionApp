@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  validates :name, :category, :code, presence: true
+  validates :name, :category, :code, :description, :weight, :width, :height, :depth, presence: true
 
   before_validation :generate_code
 

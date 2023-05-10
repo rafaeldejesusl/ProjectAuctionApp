@@ -26,6 +26,66 @@ RSpec.describe Item, type: :model do
 			expect(result).to eq false
 		end
 
+    it 'falso quando a descrição é vazia' do
+			# Arrange
+			item = Item.new(name: 'Cadeira', description: '', image_url: '',
+        weight: 1200, width: 50, height: 85, depth: 50, category: 'Mobília')
+
+			# Act
+			result = item.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
+
+    it 'falso quando o peso é vazio' do
+			# Arrange
+			item = Item.new(name: 'Cadeira', description: 'Cadeira gamer', image_url: '',
+        weight: '', width: 50, height: 85, depth: 50, category: 'Mobília')
+
+			# Act
+			result = item.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
+
+    it 'falso quando a largura é vazia' do
+			# Arrange
+			item = Item.new(name: 'Cadeira', description: 'Cadeira gamer', image_url: '',
+        weight: 1200, width: '', height: 85, depth: 50, category: 'Mobília')
+
+			# Act
+			result = item.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
+
+    it 'falso quando a altura é vazia' do
+			# Arrange
+			item = Item.new(name: 'Cadeira', description: 'Cadeira gamer', image_url: '',
+        weight: 1200, width: 50, height: '', depth: 50, category: 'Mobília')
+
+			# Act
+			result = item.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
+
+    it 'falso quando a profundidade é vazia' do
+			# Arrange
+			item = Item.new(name: 'Cadeira', description: 'Cadeira gamer', image_url: '',
+        weight: 1200, width: 50, height: 85, depth: '', category: 'Mobília')
+
+			# Act
+			result = item.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
+
     it 'deve ter um código' do
 			# Arrange
 			item = Item.new(name: 'Cadeira', description: 'Cadeira gamer', image_url: '',

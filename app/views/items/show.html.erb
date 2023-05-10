@@ -9,6 +9,8 @@
 	<strong>Dimensão:</strong> <%= "#{@item.width} cm x #{@item.height} cm x #{@item.depth} cm" %>
 	<strong><%= Item.human_attribute_name(:category) %>:</strong> <%= @item.category %> 
 </div>
-<div>
-  <%= image_tag(@item.image_url, :alt => "Imagem do item") %>
-</div>
+<% if @item.image_url? %>
+	<div>
+		<%= image_tag(@item.image_url, :alt => "Imagem do item") %>
+	</div>
+<% end %>
