@@ -25,4 +25,17 @@ class ItemsController < ApplicationController
       render 'new'	
     end
   end
+
+  def remove
+    lot = Lot.find(params[:lot_id])
+    item = Item.find(params[:id])
+
+    if lot.pending?
+      item.lot_id = nil
+      item.save
+      redirect_to lot_path(lot.id), notice: 'Item removido com sucesso'
+    else
+      redirect_to lot_path(lot.id), notice: 'Item não pode ser removido'
+    end
+  end
 end

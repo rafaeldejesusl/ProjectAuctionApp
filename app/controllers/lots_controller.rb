@@ -8,6 +8,7 @@ class LotsController < ApplicationController
 
   def show
     @lot = Lot.find(params[:id])
+    @items = @lot.items
   end
 
   def new
@@ -24,6 +25,37 @@ class LotsController < ApplicationController
     else
       flash.now[:notice] = 'Lote não cadastrado'
       render 'new'	
+    end
+  end
+
+  def new_item
+    @lot = Lot.find(params[:id])
+    @items = Item.where(lot_id: nil)
+  end
+
+  def add_item
+    item = Item.find(params[:item_id])
+    @lot = Lot.find(params[:id])
+
+    if item.lot_id.nil? && @lot.pending?
+      item.lot = @lot
+      item.save
+      redirect_to lot_path(@lot.id), notice: 'Item adicionado com sucesso'
+    else
+      redirect_to lot_path(@lot.id), notice: 'Não foi possível adicionar o item'
+    end
+  end
+
+  def approved
+    @lot = Lot.find(params[:id])
+
+    if current_user != @lot.created_by && @lot.pending?
+      @lot.approved!
+      @lot.approved_by = current_user
+      @lot.save
+      redirect_to lot_path(@lot.id), notice: 'Lote aprovado com sucesso'
+    else
+      redirect_to lot_path(@lot.id), notice: 'Não foi possível aprovar o lote'
     end
   end
 end

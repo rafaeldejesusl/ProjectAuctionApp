@@ -14,5 +14,28 @@
   <strong><%= Lot.human_attribute_name(:minimal_difference) %>:</strong>
   <%= @lot.minimal_difference %> R$
 	<strong><%= Lot.human_attribute_name(:created_by) %>:</strong>
-  <%= @lot.created_by.name %> 
+  <%= @lot.created_by.name %>
+  <% if not @lot.pending? %>
+    <strong><%= Lot.human_attribute_name(:approved_by) %>:</strong>
+    <%= @lot.approved_by.name %>
+  <% end %>
+</div>
+<% if @lot.pending? %>
+  <%= button_to 'Aprovar Lote', approved_lot_path(@lot.id) %>
+<% end %>
+<div>
+  <% if @lot.pending? %>
+    <%= link_to 'Adicionar Item ao Lote', new_item_lot_path(@lot.id) %>
+  <% end %>
+
+  <h3>Itens deste Lote</h3>
+  <% @items.each do |i| %>
+    <%= link_to i.name, item_path(i.id) %>
+    <% if @lot.pending? %>
+      <%= button_to 'Remover', remove_lot_item_path(@lot.id, i.id), id: i.id, method: :patch %>
+    <% end %>
+  <% end %>
+  <% if @items.empty? %>
+    <p>Não existem itens neste lote</p>
+  <% end %>
 </div>
