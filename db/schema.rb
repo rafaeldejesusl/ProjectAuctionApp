@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_10_143351) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_115953) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_143351) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lot_id"
+    t.index ["lot_id"], name: "index_items_on_lot_id"
   end
 
   create_table "lots", force: :cascade do |t|
@@ -55,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_143351) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "lots"
   add_foreign_key "lots", "users", column: "approved_by_id"
   add_foreign_key "lots", "users", column: "created_by_id"
 end
