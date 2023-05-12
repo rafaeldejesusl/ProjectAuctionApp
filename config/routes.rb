@@ -2,14 +2,18 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
   resources :auctions, only: [:show]
+  get 'won_auctions', to: 'auctions#won'
   resources :items, only: [:index, :show, :new, :create]
   resources :lots, only: [:index, :show, :new, :create] do
     get 'new_item', on: :member
+    get 'finished', on: :collection
     post 'add_item', on: :member
     resources :items, only: [] do
       patch 'remove', on: :member
     end
     post 'approved', on: :member
+    post 'close', on: :member
+    post 'cancel', on: :member
     resources :bids, only: [:new, :create]
   end
 end
