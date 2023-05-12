@@ -54,6 +54,28 @@ describe 'Usuário visita detalhes de um leilão' do
     expect(page).not_to have_content('Tablet')
 	end
 
+	it 'e vê último lance' do
+		# Arrange
+		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
+      cpf: CPF.generate)
+    lot = nil
+		travel_to 1.week.ago do
+			lot = Lot.create!(code: 'abc987654', start_date: 1.week.from_now, end_date: 3.week.from_now,
+				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+		end
+		Bid.create!(value: 30, user: user, lot: lot)
+    bid = Bid.create!(value: 50, user: user, lot: lot)
+		
+		# Act
+		login_as user
+		visit('/')
+    click_on 'abc987654'
+		
+		# Assert
+		expect(page).to have_content('Último Lance: 50 R$')
+    expect(page).not_to have_content('30 R$')
+	end
+
 	it 'e volta para a tela inicial' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
