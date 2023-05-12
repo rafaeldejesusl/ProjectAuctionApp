@@ -21,5 +21,12 @@ lot_b = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.m
   minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved, approved_by: other_user)
 Lot.insert_all([
   {code: 'xyz987654', start_date: 1.day.ago, end_date: 1.month.from_now,
-    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved}
+    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: user.id},
+  {code: 'xyz123456', start_date: 1.week.ago, end_date: 1.day.ago,
+    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: user.id},
+  {code: 'aei123456', start_date: 1.week.ago, end_date: 1.day.ago,
+    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: user.id}
 ])
+Bid.create!(value: 50, user: other_user, lot_id: 4)
+Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung', image_url: '',
+  weight: 320, width: 15, height: 25, depth: 1, category: 'Eletrônico', lot_id: 5)
