@@ -1,0 +1,5 @@
+<h2>Leilões Ganhos</h2>
+
+<% @lots.each do |l| %>
+  <%= link_to "Lote #{l.code}", auction_path(l.id) %>
+<% end %>

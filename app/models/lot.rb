@@ -9,7 +9,7 @@ class Lot < ApplicationRecord
   validates :end_date, comparison: { greater_than: :start_date }
   validate :start_date_is_future
 
-  enum status: { pending: 0, approved: 5 }
+  enum status: { pending: 0, approved: 5, closed: 10, cancelled: 15 }
 
   private
 

@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :is_admin?
 
 	def index
-    @items = Item.all
+    @items = Item.where(lot_id: nil)
 	end
 
   def show

@@ -58,4 +58,31 @@ class LotsController < ApplicationController
       redirect_to lot_path(@lot.id), notice: 'Não foi possível aprovar o lote'
     end
   end
+
+  def finished
+    @lots = Lot.where('end_date < ? and status = 5', Date.today)
+  end
+
+  def close
+    @lot = Lot.find(params[:id])
+    if @lot.approved? && !@lot.bids.empty?
+      @lot.update_columns(status: :closed)
+      redirect_to finished_lots_path , notice: 'Lote encerrado com sucesso'
+    else
+      redirect_to finished_lots_path, notice: 'Não foi possível encerrar o lote'
+    end
+  end
+
+  def cancel
+    @lot = Lot.find(params[:id])
+    if @lot.approved? && @lot.bids.empty?
+      @lot.update_columns(status: :cancelled)
+      @lot.items.each do |i|
+        i.update(lot_id: nil)
+      end
+      redirect_to finished_lots_path , notice: 'Lote cancelado com sucesso'
+    else
+      redirect_to finished_lots_path, notice: 'Não foi possível cancelar o lote'
+    end
+  end
 end
