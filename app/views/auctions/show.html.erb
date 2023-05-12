@@ -3,6 +3,14 @@
   <%= link_to('Voltar', root_path) %>
 </div>
 <div>
+  <% if not @lot.bids.empty? %>
+    <h3>Último Lance: <%= @lot.bids.last.value %> R$</h3> 
+  <% end %>
+  <% if @lot.start_date <= Date.today && @lot.end_date >= Date.today %>
+    <%= link_to 'Fazer um Lance', new_lot_bid_path(@lot.id) %>  
+  <% end %>
+</div>
+<div>
 	<strong><%= Lot.human_attribute_name(:start_date) %>:</strong>
   <%= I18n.localize(@lot.start_date) %>
 	<strong><%= Lot.human_attribute_name(:end_date) %>:</strong>

@@ -1,5 +1,6 @@
 class Lot < ApplicationRecord
   has_many :items
+  has_many :bids
   belongs_to :created_by, class_name: 'User'
   belongs_to :approved_by, class_name: 'User', optional: true
   validates :code, :start_date, :end_date, :minimum_value, :minimal_difference, presence: true

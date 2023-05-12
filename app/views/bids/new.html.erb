@@ -1,0 +1,9 @@
+<h2>Novo Lance</h2>
+
+<%= form_with(model: [@lot, @bid]) do |f|  %>
+  <div>
+		<%= f.label :value %>
+		<%= f.number_field :value %>
+	</div>
+  <%= f.submit 'Dar Lance' %>
+<% end %>
