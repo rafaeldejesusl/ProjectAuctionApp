@@ -75,12 +75,16 @@ describe 'Usuário adiciona um item no lote' do
     expect(page).to have_content('Item adicionado com sucesso')
 	end
 
-  it 'com itens indisponíveis' do
+  it 'com itens disponíveis' do
 		# Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
     lot_a = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
       minimum_value: 10, minimal_difference: 5, created_by: user)
+    lot_b = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
+      minimum_value: 10, minimal_difference: 5, created_by: user)
+    Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung', image_url: '',
+      weight: 320, width: 15, height: 25, depth: 1, category: 'Eletrônico', lot: lot_b)
 
 		# Act
 		login_as user
