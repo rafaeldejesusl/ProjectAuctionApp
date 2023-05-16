@@ -1,9 +1,13 @@
-<h2>Novo Lance</h2>
+<div class="text-center">
+	<h2>Novo Lance</h2>
 
-<%= form_with(model: [@lot, @bid]) do |f|  %>
-  <div>
-		<%= f.label :value %>
-		<%= f.number_field :value %>
+	<div class="d-flex justify-content-center">
+		<%= form_with(model: [@lot, @bid]) do |f|  %>
+			<div class="form-group">
+				<%= f.label :value %>
+				<%= f.number_field :value, class: "form-control" %>
+			</div>
+			<%= f.submit 'Dar Lance', class: "btn btn-primary my-2" %>
+		<% end %>
 	</div>
-  <%= f.submit 'Dar Lance' %>
-<% end %>
+</div>
