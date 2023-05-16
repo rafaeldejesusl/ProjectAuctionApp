@@ -1,38 +1,40 @@
-<h2>Lote <%= @lot.code %></h2>
-<div>
-  <%= link_to('Voltar', root_path) %>
-</div>
-<div>
-  <% if not @lot.bids.empty? %>
-    <h3>Último Lance: <%= @lot.bids.last.value %> R$</h3> 
-  <% end %>
-  <% if @lot.start_date <= Date.today && @lot.end_date >= Date.today %>
-    <%= link_to 'Fazer um Lance', new_lot_bid_path(@lot.id) %>  
-  <% end %>
-</div>
-<div>
-	<strong><%= Lot.human_attribute_name(:start_date) %>:</strong>
-  <%= I18n.localize(@lot.start_date) %>
-	<strong><%= Lot.human_attribute_name(:end_date) %>:</strong>
-  <%= I18n.localize(@lot.end_date) %>
-	<strong><%= Lot.human_attribute_name(:minimum_value) %>:</strong>
-  <%= @lot.minimum_value %> R$
-  <strong><%= Lot.human_attribute_name(:minimal_difference) %>:</strong>
-  <%= @lot.minimal_difference %> R$
-</div>
-<div>
-  <h3>Itens deste Lote</h3>
-  <% @lot.items.each do |i| %>
-    <div>
-      <strong><%= i.name %></strong>
-      <strong><%= Item.human_attribute_name(:code) %>:</strong> <%= i.code %>
-      <strong><%= Item.human_attribute_name(:description) %>:</strong> <%= i.description %>
-      <strong><%= Item.human_attribute_name(:weight) %>:</strong> <%= i.weight %> g
-      <strong>Dimensão:</strong> <%= "#{i.width} cm x #{i.height} cm x #{i.depth} cm" %>
-      <strong><%= Item.human_attribute_name(:category) %>:</strong> <%= i.category %> 
-    <div>
-  <% end %>
-  <% if @lot.items.empty? %>
-    <p>Não existem itens neste lote</p>
-  <% end %>
+<div class="text-center">
+  <h2>Lote <%= @lot.code %></h2>
+  <div>
+    <%= link_to('Voltar', root_path) %>
+  </div>
+  <div>
+    <% if not @lot.bids.empty? %>
+      <h4>Último Lance: <%= @lot.bids.last.value %> R$</h4> 
+    <% end %>
+    <% if @lot.start_date <= Date.today && @lot.end_date >= Date.today %>
+      <%= link_to 'Fazer um Lance', new_lot_bid_path(@lot.id), class: "btn btn-primary" %>  
+    <% end %>
+  </div>
+  <div class="d-flex flex-column text-center">
+    <strong><%= Lot.human_attribute_name(:start_date) %>:</strong>
+    <%= I18n.localize(@lot.start_date) %>
+    <strong><%= Lot.human_attribute_name(:end_date) %>:</strong>
+    <%= I18n.localize(@lot.end_date) %>
+    <strong><%= Lot.human_attribute_name(:minimum_value) %>:</strong>
+    <%= @lot.minimum_value %> R$
+    <strong><%= Lot.human_attribute_name(:minimal_difference) %>:</strong>
+    <%= @lot.minimal_difference %> R$
+  </div>
+  <div>
+    <h3>Itens deste Lote</h3>
+    <% @lot.items.each do |i| %>
+      <div class="d-flex flex-column text-center card mx-auto">
+        <strong class="h4"><%= i.name %></strong>
+        <strong><%= Item.human_attribute_name(:code) %>:</strong> <%= i.code %>
+        <strong><%= Item.human_attribute_name(:description) %>:</strong> <%= i.description %>
+        <strong><%= Item.human_attribute_name(:weight) %>:</strong> <%= i.weight %> g
+        <strong>Dimensão:</strong> <%= "#{i.width} cm x #{i.height} cm x #{i.depth} cm" %>
+        <strong><%= Item.human_attribute_name(:category) %>:</strong> <%= i.category %> 
+      <div>
+    <% end %>
+    <% if @lot.items.empty? %>
+      <p>Não existem itens neste lote</p>
+    <% end %>
+  </div>
 </div>

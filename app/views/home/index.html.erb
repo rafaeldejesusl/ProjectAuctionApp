@@ -1,9 +1,15 @@
-<h2>Lotes em Andamento</h2>
-<% @in_progress.each do |i| %>
-  <%= link_to i.code, auction_path(i.id) %>
-<% end %>
+<div class="text-center">
+  <h2>Lotes em Andamento</h2>
+  <% @in_progress.each do |i| %>
+    <div>
+      <%= link_to i.code, auction_path(i.id) %>
+    <div>
+  <% end %>
 
-<h2>Lotes Futuros</h2>
-<% @future.each do |f| %>
-  <%= link_to f.code, auction_path(f.id) %>
-<% end %>
+  <h2>Lotes Futuros</h2>
+  <% @future.each do |f| %>
+    <div>
+      <%= link_to f.code, auction_path(f.id) %>
+    </div>
+  <% end %>
+</div>

@@ -1,5 +1,9 @@
-<h2>Leilões Ganhos</h2>
+<div class="text-center">
+  <h2>Leilões Ganhos</h2>
 
-<% @lots.each do |l| %>
-  <%= link_to "Lote #{l.code}", auction_path(l.id) %>
-<% end %>
+  <% @lots.each do |l| %>
+    <div>
+      <%= link_to "Lote #{l.code}", auction_path(l.id) %>
+    </div>
+  <% end %>
+</div>
