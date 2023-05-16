@@ -50,9 +50,7 @@ class LotsController < ApplicationController
     @lot = Lot.find(params[:id])
 
     if current_user != @lot.created_by && @lot.pending?
-      @lot.approved!
-      @lot.approved_by = current_user
-      @lot.save
+      @lot.update_columns(status: :approved, approved_by_id: current_user.id)
       redirect_to lot_path(@lot.id), notice: 'Lote aprovado com sucesso'
     else
       redirect_to lot_path(@lot.id), notice: 'Não foi possível aprovar o lote'
