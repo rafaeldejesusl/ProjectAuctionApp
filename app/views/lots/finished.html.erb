@@ -1,22 +1,24 @@
-<h2>Lotes Finalizados</h2>
+<div class="text-center">
+  <h2>Lotes Finalizados</h2>
 
-<% @lots.each do |l| %>
-	<div>
-    <h3><%= link_to "Lote #{l.code}", lot_path(l.id) %></h3>
-    <% if not l.bids.empty? %>
-      <%= button_to 'Encerrar Lote', close_lot_path(l.id) %>
-      <dl>
-        <dt>Lance Vencedor:</dt>
-        <dd><%= l.bids.last.value %> R$</dd>
-        <dt>Usuário Vencedor:</dt>
-        <dd><%= l.bids.last.user.name %></dd>
-      </dl>
-    <% else %>
-      <%= button_to 'Cancelar Lote', cancel_lot_path(l.id) %>       
-    <% end %>
-  </div>
-<% end %>
+  <% @lots.each do |l| %>
+    <div>
+      <h3><%= link_to "Lote #{l.code}", lot_path(l.id) %></h3>
+      <% if not l.bids.empty? %>
+        <%= button_to 'Encerrar Lote', close_lot_path(l.id), class: "btn btn-primary btn-sm" %>
+        <dl>
+          <dt>Lance Vencedor:</dt>
+          <dd><%= l.bids.last.value %> R$</dd>
+          <dt>Usuário Vencedor:</dt>
+          <dd><%= l.bids.last.user.name %></dd>
+        </dl>
+      <% else %>
+        <%= button_to 'Cancelar Lote', cancel_lot_path(l.id), class: "btn btn-danger btn-sm" %>       
+      <% end %>
+    </div>
+  <% end %>
 
-<% if @lots.empty? %>
-	<p>Não existem lotes finalizados</p>
-<% end %>
+  <% if @lots.empty? %>
+    <p>Não existem lotes finalizados</p>
+  <% end %>
+</div>

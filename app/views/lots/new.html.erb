@@ -1,37 +1,40 @@
-<h2>Novo Lote</h2>
+<div class="text-center">
+	<h2>Novo Lote</h2>
 
-<% if(@lot.errors.any?) %>
-	<p>Verifique os erros abaixo:</p>
-	<ul>
-		<% @lot.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
+	<% if(@lot.errors.any?) %>
+		<div class="w-25 mx-auto">
+			<p>Verifique os erros abaixo:</p>
+			<ul>
+				<% @lot.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="d-flex justify-content-center">
+		<%= form_with(model: @lot) do |f| %>
+				<div class="form-group">
+					<%= f.label :code %>
+					<%= f.text_field :code, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.label :start_date %>
+					<%= f.date_field :start_date, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.label :end_date %>
+					<%= f.date_field :end_date, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.label :minimum_value %>
+					<%= f.number_field :minimum_value, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.label :minimal_difference %>
+					<%= f.number_field :minimal_difference, class: "form-control" %>
+				</div>
+				<%= f.submit 'Enviar', class: "btn btn-primary my-2" %>
 		<% end %>
-	</ul>
-<% end %>
-
-<%= form_with(model: @lot) do |f| %>
-	<div>
-		<%= f.label :code %>
-		<%= f.text_field :code %>
 	</div>
-	<div>
-		<%= f.label :start_date %>
-		<%= f.date_field :start_date %>
-	</div>
-	<div>
-		<%= f.label :end_date %>
-		<%= f.date_field :end_date %>
-	</div>
-	<div>
-		<%= f.label :minimum_value %>
-		<%= f.number_field :minimum_value %>
-	</div>
-	<div>
-		<%= f.label :minimal_difference %>
-		<%= f.number_field :minimal_difference %>
-	</div>
-	</div>
-	<div>
-		<%= f.submit 'Enviar' %>
-	</div>
-<% end %>
+</div>

@@ -1,15 +1,17 @@
-<h2>Selecione um Item para Adicionar ao Lote</h2>
+<div class="text-center">
+  <h2>Selecione um Item para Adicionar ao Lote</h2>
 
-<% if @items.empty? %>
-  <p>Não há itens disponíveis</p>
-<% else %>
+  <% if @items.empty? %>
+    <p>Não há itens disponíveis</p>
+  <% else %>
 
-  <%= form_with(url: add_item_lot_path(@lot.id)) do |f| %>
-    <div>
-      <%= f.label :item_id, 'Item' %>
-      <%= f.collection_select :item_id, @items, :id, :name %>
-    </div>
-    <%= f.submit 'Confirmar Adição' %>
+    <%= form_with(url: add_item_lot_path(@lot.id)) do |f| %>
+      <div class="form-group d-flex flex-column w-25 mx-auto">
+        <%= f.label :item_id, 'Item' %>
+        <%= f.collection_select :item_id, @items, :id, :name, class: "form-control" %>
+      </div>
+      <%= f.submit 'Confirmar Adição', class: "btn btn-primary my-2" %>
+    <% end %>
+    
   <% end %>
-  
-<% end %>
+<div>

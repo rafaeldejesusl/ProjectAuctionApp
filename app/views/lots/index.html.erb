@@ -1,20 +1,22 @@
-<h2>Lotes</h2>
-
-<%= link_to 'Cadastrar Lote', new_lot_path %>
-
-<% @lots.each do |l| %>
-	<div>
-    <h3><%= link_to "Lote #{l.code}", lot_path(l.id) %></h3>
-    <dl>
-      <dt><%= Lot.human_attribute_name(:start_date) %>:</dt>
-      <dd><%= I18n.localize(l.start_date) %></dd>
-      <dt><%= Lot.human_attribute_name(:end_date) %>:</dt>
-      <dd><%= I18n.localize(l.end_date) %></dd>
-      <dt><%= Lot.human_attribute_name(:status) %>:</dt>
-      <dd><%= I18n.translate(l.status) %></dd>
-    </dl>
-  </div>
-<% end %>
+<h2 class="text-center">Lotes</h2>
+<div class="text-center">
+  <%= link_to 'Cadastrar Lote', new_lot_path, class: "btn btn-primary" %>
+</div>
+<div class="d-flex flex-wrap justify-content-around flex-wrap">
+  <% @lots.each do |l| %>
+    <div class="m-2 card text-center p-2">
+      <h3><%= link_to "Lote #{l.code}", lot_path(l.id) %></h3>
+      <dl>
+        <dt><%= Lot.human_attribute_name(:start_date) %>:</dt>
+        <dd><%= I18n.localize(l.start_date) %></dd>
+        <dt><%= Lot.human_attribute_name(:end_date) %>:</dt>
+        <dd><%= I18n.localize(l.end_date) %></dd>
+        <dt><%= Lot.human_attribute_name(:status) %>:</dt>
+        <dd><%= I18n.translate(l.status) %></dd>
+      </dl>
+    </div>
+  <% end %>
+</div>
 
 <% if @lots.empty? %>
 	<p>Não existem lotes cadastrados</p>
