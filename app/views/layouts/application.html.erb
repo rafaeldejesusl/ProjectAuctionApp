@@ -6,29 +6,34 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <%= stylesheet_link_tag "application" %>
   </head>
 
   <body>
-    <header>
+    <header class="d-flex justify-content-center">
       <h1><%= link_to 'Leilão de Estoque', root_path %></h1>
     </header>
-    <nav>
-      <%= link_to 'Itens', items_path %> |
-      <%= link_to 'Lotes', lots_path %> |
-      <%= link_to 'Finalizados', finished_lots_path %> |
-      <%= link_to 'Leilões Ganhos', won_auctions_path %> |
+    <nav class="d-flex justify-content-around p-1">
+      <%= link_to 'Itens', items_path, class: "pt-2" %>
+      <%= link_to 'Lotes', lots_path, class: "pt-2" %>
+      <%= link_to 'Finalizados', finished_lots_path, class: "pt-2" %>
+      <%= link_to 'Leilões Ganhos', won_auctions_path, class: "pt-2" %>
       <% if user_signed_in? %>
-        <%= current_user.email %> |
-        <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+        <p class="pt-2"><%= current_user.email %></p>
+        <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-dark' %>
       <% else %>
-        <%= link_to 'Entrar', new_user_session_path %>
+        <%= link_to 'Entrar', new_user_session_path, class: "pt-2 btn btn-dark" %>
       <% end %>
     </nav>
-    <div>
-      <%= notice %>
-      <%= alert %>
-    </div>
-    <%= yield %>
+    <% if notice || alert %>
+      <div class="alert alert-info p-2 m-2 text-center">
+        <%= notice %>
+        <%= alert %>
+      </div>
+    <% end %>
+    <main class="m-3 mx-5">
+      <%= yield %>
+    </main>
   </body>
 </html>
