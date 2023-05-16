@@ -1,19 +1,21 @@
-<h2>Itens para Leilão</h2>
+<div class="text-center">
+  <h2>Itens para Leilão</h2>
 
-<%= link_to 'Cadastrar Item', new_item_path %>
+  <%= link_to 'Cadastrar Item', new_item_path, class: "btn btn-primary" %>
 
-<% @items.each do |i| %>
-	<div>
-    <h3><%= link_to i.name, item_path(i.id) %></h3>
-    <dl>
-      <dt><%= Item.human_attribute_name(:code) %>:</dt>
-      <dd><%= i.code %></dd>
-      <dt><%= Item.human_attribute_name(:category) %>:</dt>
-      <dd><%= i.category %></dd>
-    </dl>
-  </div>
-<% end %>
+  <% @items.each do |i| %>
+    <div>
+      <h3><%= link_to i.name, item_path(i.id) %></h3>
+      <dl>
+        <dt><%= Item.human_attribute_name(:code) %>:</dt>
+        <dd><%= i.code %></dd>
+        <dt><%= Item.human_attribute_name(:category) %>:</dt>
+        <dd><%= i.category %></dd>
+      </dl>
+    </div>
+  <% end %>
 
-<% if @items.empty? %>
-	<p>Não existem itens cadastrados</p>
-<% end %>
+  <% if @items.empty? %>
+    <p>Não existem itens cadastrados</p>
+  <% end %>
+</div>
