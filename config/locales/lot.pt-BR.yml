@@ -1,6 +1,8 @@
 pt-BR:
   pending: "Pendente"
   approved: "Aprovado"
+  closed: "Encerrado"
+  cancelled: "Cancelado"
   activerecord:
     models:
       lot:
