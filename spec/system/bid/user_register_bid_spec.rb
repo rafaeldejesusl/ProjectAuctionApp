@@ -7,13 +7,14 @@ describe 'Usuário cadastra um lance' do
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 1.week.from_now, end_date: 3.week.from_now,
+			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
 
 		# Act
 		visit root_path
     click_on 'abc987654'
+		expect(page).to have_content "Fazer um Lance"
 		click_on 'Fazer um Lance'
 
 		# Assert
@@ -26,7 +27,7 @@ describe 'Usuário cadastra um lance' do
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 1.week.from_now, end_date: 3.week.from_now,
+			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
 
@@ -67,7 +68,7 @@ describe 'Usuário cadastra um lance' do
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 1.week.from_now, end_date: 3.week.from_now,
+			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
 
@@ -89,7 +90,7 @@ describe 'Usuário cadastra um lance' do
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 1.week.from_now, end_date: 3.week.from_now,
+			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
     Bid.create!(value: 11, user: user, lot: lot)
@@ -112,7 +113,7 @@ describe 'Usuário cadastra um lance' do
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 1.week.from_now, end_date: 3.week.from_now,
+			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
     Bid.create!(value: 11, user: user, lot: lot)
@@ -136,7 +137,7 @@ describe 'Usuário cadastra um lance' do
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 1.week.from_now, end_date: 3.week.from_now,
+			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
     Bid.create!(value: 11, user: user, lot: lot)
