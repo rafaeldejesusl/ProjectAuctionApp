@@ -31,10 +31,25 @@
         <strong><%= Item.human_attribute_name(:weight) %>:</strong> <%= i.weight %> g
         <strong>Dimensão:</strong> <%= "#{i.width} cm x #{i.height} cm x #{i.depth} cm" %>
         <strong><%= Item.human_attribute_name(:category) %>:</strong> <%= i.category %> 
-      <div>
+      </div>
     <% end %>
     <% if @lot.items.empty? %>
       <p>Não existem itens neste lote</p>
+    <% end %>
+  </div>
+  <div>
+    <h3>Perguntas</h3>
+    <%= link_to 'Fazer uma Pergunta', new_lot_question_path(@lot.id), class: "btn btn-primary my-2" %>
+    <% @questions.each do |q| %>
+      <div class="d-flex flex-column text-center card mx-auto">
+        <strong><%= q.user.name %>:</strong> <%= q.content %>
+        <% if q.answer %>
+          <strong><%= q.answer.user.name %>:</strong> <%= q.answer.content %> 
+        <% end %>
+      <div>
+    <% end %>
+    <% if @questions.empty? %>
+      <p>Não existem perguntas neste lote</p>
     <% end %>
   </div>
 </div>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :lots, only: [:index, :show, :new, :create] do
     get 'new_item', on: :member
     get 'finished', on: :collection
+    get 'unanswered', on: :collection
     post 'add_item', on: :member
     resources :items, only: [] do
       patch 'remove', on: :member
@@ -15,5 +16,9 @@ Rails.application.routes.draw do
     post 'close', on: :member
     post 'cancel', on: :member
     resources :bids, only: [:new, :create]
+    resources :questions, only: [:new, :create] do
+      resources :answers, only: [:new, :create]
+      post 'hide', on: :member
+    end
   end
 end

@@ -18,6 +18,7 @@
       <%= link_to 'Itens', items_path, class: "pt-2" %>
       <%= link_to 'Lotes', lots_path, class: "pt-2" %>
       <%= link_to 'Finalizados', finished_lots_path, class: "pt-2" %>
+      <%= link_to 'Perguntas', unanswered_lots_path, class: "pt-2" %>
       <%= link_to 'Leilões Ganhos', won_auctions_path, class: "pt-2" %>
       <% if user_signed_in? %>
         <p class="pt-2"><%= current_user.email %></p>

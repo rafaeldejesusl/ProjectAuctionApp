@@ -4,6 +4,7 @@ class AuctionsController < ApplicationController
 
   def show
     @lot = Lot.find(params[:id])
+    @questions = Question.where(lot_id: @lot.id, visible: true)
   end
 
   def won

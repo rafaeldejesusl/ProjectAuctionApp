@@ -1,0 +1,20 @@
+<div class="text-center">
+  <h2>Perguntas</h2>
+
+  <% @questions.each do |q| %>
+    <div>
+      <h3><%= link_to "Lote #{q.lot.code}", lot_path(q.lot.id) %></h3>
+      <strong><%= q.user.name %>:</strong> <%= q.content %>
+      <div>
+        <%= link_to 'Responder', new_lot_question_answer_path(q.lot.id, q.id), class: "btn btn-primary btn-sm my-2" %>
+      </div>
+      <div>
+        <%= button_to 'Ocultar', hide_lot_question_path(q.lot.id, q.id), class: "btn btn-danger btn-sm my-2" %>       
+      </div>
+    </div>
+  <% end %>
+
+  <% if @questions.empty? %>
+    <p>Não existem perguntas</p>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+<div class="text-center">
+	<h2>Nova Resposta</h2>
+
+	<div class="d-flex justify-content-center">
+		<%= form_with(model: [@lot, @question, @answer]) do |f|  %>
+			<div class="form-group">
+				<%= f.label :content, "Resposta" %>
+				<%= f.text_area :content, class: "form-control" %>
+			</div>
+			<%= f.submit 'Responder Pergunta', class: "btn btn-primary my-2" %>
+		<% end %>
+	</div>
+</div>

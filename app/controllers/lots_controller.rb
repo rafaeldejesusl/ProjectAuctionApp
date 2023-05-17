@@ -83,4 +83,8 @@ class LotsController < ApplicationController
       redirect_to finished_lots_path, notice: 'Não foi possível cancelar o lote'
     end
   end
+
+  def unanswered
+    @questions = Question.includes(:answer).where(answer: { id: nil}, visible: true)
+  end
 end
