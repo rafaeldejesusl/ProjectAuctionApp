@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_124706) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_223951) do
+  create_table "answers", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id", null: false
+    t.integer "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
   create_table "bids", force: :cascade do |t|
     t.integer "value"
     t.integer "lot_id", null: false
@@ -52,6 +62,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_124706) do
     t.index ["created_by_id"], name: "index_lots_on_created_by_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id", null: false
+    t.integer "lot_id", null: false
+    t.boolean "visible", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lot_id"], name: "index_questions_on_lot_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -67,9 +88,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_124706) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "bids", "lots"
   add_foreign_key "bids", "users"
   add_foreign_key "items", "lots"
   add_foreign_key "lots", "users", column: "approved_by_id"
   add_foreign_key "lots", "users", column: "created_by_id"
+  add_foreign_key "questions", "lots"
+  add_foreign_key "questions", "users"
 end
