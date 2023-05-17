@@ -1,4 +1,13 @@
 <div class="text-center">
+  <div class="input-group d-flex justify-content-center my-3">
+    <%= form_with(url: search_auctions_path, method: :get) do |f| %>
+      <%= f.label :query, 'Buscar Leilões', class: 'h2' %>
+      <div class="d-flex">
+        <%= f.text_field :query, class: 'form-control mx-2' %>
+        <%= f.submit 'Buscar', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
   <h2>Lotes em Andamento</h2>
   <% @in_progress.each do |i| %>
     <div>

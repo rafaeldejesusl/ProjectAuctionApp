@@ -1,0 +1,12 @@
+<div class="text-center">
+  <h2>Resultados da Busca por: <%= @text %></h2>
+  <p>
+    <%= @auctions.count %>
+    <%= t(:found, count: @auctions.count) %>
+  </p>
+  <% @auctions.each do |a| %>
+    <div>
+      <%= link_to a.code, auction_path(a.id) %>
+    <div>
+  <% end %>
+</div>

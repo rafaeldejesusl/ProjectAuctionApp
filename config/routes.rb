@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
-  resources :auctions, only: [:show]
+  resources :auctions, only: [:show] do
+    get 'search', on: :collection
+  end
   get 'won_auctions', to: 'auctions#won'
   resources :items, only: [:index, :show, :new, :create]
   resources :lots, only: [:index, :show, :new, :create] do
