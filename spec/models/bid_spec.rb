@@ -7,7 +7,7 @@ RSpec.describe Bid, type: :model do
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
       lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved, approved_by: user)
+        minimum_value: 10, minimal_difference: 5, created_by: user)
       bid = Bid.new(value: '', lot: lot, user: user)
       
 			# Act
@@ -21,8 +21,6 @@ RSpec.describe Bid, type: :model do
 			# Arrange
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
-      lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved, approved_by: user)
       bid = Bid.new(value: 50, user: user)
       
 			# Act
@@ -37,7 +35,7 @@ RSpec.describe Bid, type: :model do
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
       lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved, approved_by: user)
+        minimum_value: 10, minimal_difference: 5, created_by: user)
       bid = Bid.new(value: 50, lot: lot)
       
 			# Act

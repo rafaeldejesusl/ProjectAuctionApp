@@ -4,9 +4,8 @@ RSpec.describe Lot, type: :model do
   describe '#valid?' do
 		it 'falso quando o código é vazio' do
 			# Arrange
-      cpf = CPF.generate
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
-        cpf: cpf)
+        cpf: CPF.generate)
 			lot = Lot.new(code: '', start_date: 1.day.from_now, end_date: 1.week.from_now,
         minimum_value: 10, minimal_difference: 5, created_by: user)
 
@@ -19,9 +18,8 @@ RSpec.describe Lot, type: :model do
 
     it 'falso quando a data de início é vazia' do
 			# Arrange
-      cpf = CPF.generate
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
-        cpf: cpf)
+        cpf: CPF.generate)
 			lot = Lot.new(code: 'abc123456', start_date: '', end_date: 1.week.from_now,
         minimum_value: 10, minimal_difference: 5, created_by: user)
 
@@ -34,9 +32,8 @@ RSpec.describe Lot, type: :model do
 
     it 'falso quando a data limite é vazia' do
 			# Arrange
-      cpf = CPF.generate
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
-        cpf: cpf)
+        cpf: CPF.generate)
 			lot = Lot.new(code: 'abc123456', start_date: 1.day.from_now, end_date: '',
         minimum_value: 10, minimal_difference: 5, created_by: user)
 
@@ -49,9 +46,8 @@ RSpec.describe Lot, type: :model do
 
     it 'falso quando o valor mínimo é vazio' do
 			# Arrange
-      cpf = CPF.generate
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
-        cpf: cpf)
+        cpf: CPF.generate)
 			lot = Lot.new(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
         minimum_value: '', minimal_difference: 5, created_by: user)
 
@@ -64,9 +60,8 @@ RSpec.describe Lot, type: :model do
 
     it 'falso quando a diferença mínima é vazia' do
 			# Arrange
-      cpf = CPF.generate
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
-        cpf: cpf)
+        cpf: CPF.generate)
 			lot = Lot.new(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
         minimum_value: 10, minimal_difference: '', created_by: user)
 
@@ -79,9 +74,6 @@ RSpec.describe Lot, type: :model do
 
     it 'falso quando o "criado por" é vazio' do
 			# Arrange
-      cpf = CPF.generate
-      user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
-        cpf: cpf)
 			lot = Lot.new(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
         minimum_value: 10, minimal_difference: 5)
 
@@ -94,9 +86,8 @@ RSpec.describe Lot, type: :model do
 
     it 'falso quando o código é repetido' do
 			# Arrange
-      cpf = CPF.generate
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
-        cpf: cpf)
+        cpf: CPF.generate)
       Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
         minimum_value: 10, minimal_difference: 5, created_by: user)
 			lot = Lot.new(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
@@ -111,9 +102,8 @@ RSpec.describe Lot, type: :model do
 
     it 'falso quando o código é inválido' do
 			# Arrange
-      cpf = CPF.generate
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
-        cpf: cpf)
+        cpf: CPF.generate)
 			lot = Lot.new(code: 'ab123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
         minimum_value: 10, minimal_difference: 5, created_by: user)
 
