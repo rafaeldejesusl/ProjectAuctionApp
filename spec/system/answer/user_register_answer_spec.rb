@@ -10,7 +10,7 @@ describe 'Usuário registra uma resposta' do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
-    question = Question.create!(content: "Quanto é?", user: user, lot: lot)
+    Question.create!(content: "Quanto é?", user: user, lot: lot)
 		
 		# Act
 		login_as user
@@ -31,7 +31,7 @@ describe 'Usuário registra uma resposta' do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
-    question = Question.create!(content: "Quanto é?", user: user, lot: lot)
+    Question.create!(content: "Quanto é?", user: user, lot: lot)
 		
 		# Act
 		login_as user
@@ -56,7 +56,7 @@ describe 'Usuário registra uma resposta' do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
-    question = Question.create!(content: "Quanto é?", user: user, lot: lot)
+    Question.create!(content: "Quanto é?", user: user, lot: lot)
 		
 		# Act
 		login_as user

@@ -55,7 +55,7 @@ describe 'Usuário vê detalhes de um lote' do
     # Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
-    lot_a = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
+    Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
       minimum_value: 10, minimal_difference: 5, created_by: user)
   
     # Act

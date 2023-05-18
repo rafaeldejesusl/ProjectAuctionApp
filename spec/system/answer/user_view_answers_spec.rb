@@ -11,7 +11,7 @@ describe 'Usuário visualiza as respostas' do
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
     question = Question.create!(content: "Quanto é?", user: user, lot: lot)
-    answer = Answer.create!(content: "20 conto", user: user, question: question)
+    Answer.create!(content: "20 conto", user: user, question: question)
 		
 		# Act
 		login_as user
@@ -34,7 +34,7 @@ describe 'Usuário visualiza as respostas' do
 		end
     Question.create!(content: "Quanto é?", user: user, lot: lot)
     question = Question.create!(content: "Ser ou não ser?", user: user, lot: lot, visible: false)
-    answer = Answer.create!(content: "20 conto", user: user, question: question)
+    Answer.create!(content: "20 conto", user: user, question: question)
 		
 		# Act
 		login_as user

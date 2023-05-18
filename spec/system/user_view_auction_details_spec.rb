@@ -36,7 +36,7 @@ describe 'Usuário visita detalhes de um leilão' do
     Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung',
       weight: 320, width: 15, height: 25, depth: 1, category: 'Eletrônico')
     allow(SecureRandom).to receive(:alphanumeric).and_return('XYZ9876543')
-    item = Item.create!(name: 'Cadeira', description: 'Cadeira gamer', lot: lot,
+    Item.create!(name: 'Cadeira', description: 'Cadeira gamer', lot: lot,
       weight: 1200, width: 50, height: 85, depth: 50, category: 'Mobília')
 		
 		# Act
@@ -64,7 +64,7 @@ describe 'Usuário visita detalhes de um leilão' do
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
 		Bid.create!(value: 30, user: user, lot: lot)
-    bid = Bid.create!(value: 50, user: user, lot: lot)
+    Bid.create!(value: 50, user: user, lot: lot)
 		
 		# Act
 		login_as user
@@ -80,9 +80,8 @@ describe 'Usuário visita detalhes de um leilão' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
-    lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
+			Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
 		

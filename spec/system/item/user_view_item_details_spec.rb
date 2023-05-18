@@ -6,7 +6,7 @@ describe 'Usuário vê detalhes de um item' do
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
     allow(SecureRandom).to receive(:alphanumeric).and_return('XYZ9876543')
-    item = Item.create!(name: 'Cadeira', description: 'Cadeira gamer', image_url: 'https://m.media-amazon.com/images/I/81fDZaQyoWL.jpg',
+    Item.create!(name: 'Cadeira', description: 'Cadeira gamer', image_url: 'https://m.media-amazon.com/images/I/81fDZaQyoWL.jpg',
       weight: 1200, width: 50, height: 85, depth: 50, category: 'Mobília')
 
 		# Act
@@ -30,7 +30,7 @@ describe 'Usuário vê detalhes de um item' do
     # Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
-    item = Item.create!(name: 'Cadeira', description: 'Cadeira gamer', image_url: 'https://m.media-amazon.com/images/I/81fDZaQyoWL.jpg',
+    Item.create!(name: 'Cadeira', description: 'Cadeira gamer', image_url: 'https://m.media-amazon.com/images/I/81fDZaQyoWL.jpg',
       weight: 1200, width: 50, height: 85, depth: 50, category: 'Mobília')
   
     # Act

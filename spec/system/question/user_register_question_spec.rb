@@ -5,9 +5,8 @@ describe 'Usuário cria uma pergunta' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
-    lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
+			Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
 		
@@ -25,9 +24,8 @@ describe 'Usuário cria uma pergunta' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
-    lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
+			Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
 		
@@ -47,9 +45,8 @@ describe 'Usuário cria uma pergunta' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
-    lot = nil
 		travel_to 1.week.ago do
-			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
+			Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
 		
