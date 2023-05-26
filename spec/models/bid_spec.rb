@@ -103,7 +103,7 @@ RSpec.describe Bid, type: :model do
 			expect(result).to eq false
 		end
 
-		it 'falso quando o lote não iniciou' do
+		it 'falso quando o lote já finalizou' do
 			# Arrange
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
