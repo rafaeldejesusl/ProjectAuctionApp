@@ -22,12 +22,16 @@ describe 'Usuário visita tela de seus lotes ganhos' do
     lot_b = nil
     travel_to 1.week.ago do
       lot_a = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.day.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user, status: :closed)
+        minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
       lot_b = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 3.day.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: other_user, status: :closed)
+        minimum_value: 10, minimal_difference: 5, created_by: other_user, status: :approved)
     end
-    Bid.create!(value: 50, user: user, lot: lot_a)
-    Bid.create!(value: 50, user: other_user, lot: lot_b)
+    travel_to 5.day.ago do
+      Bid.create!(value: 50, user: user, lot: lot_a)
+      Bid.create!(value: 50, user: other_user, lot: lot_b)
+    end
+    lot_a.closed!
+    lot_b.closed!
     
     # Act
     login_as user

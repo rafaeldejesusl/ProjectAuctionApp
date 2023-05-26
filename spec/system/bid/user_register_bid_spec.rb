@@ -77,7 +77,7 @@ describe 'Usuário cadastra um lance' do
     click_on 'Dar Lance'
 
 		# Assert
-		expect(page).to have_content 'Lance deve ser maior que o valor mínimo'
+		expect(page).to have_content 'Não foi possível fazer o lance'
 	end
 
   it 'quando for maior que a diferença mínima' do
@@ -100,7 +100,7 @@ describe 'Usuário cadastra um lance' do
     click_on 'Dar Lance'
 
 		# Assert
-		expect(page).to have_content 'Lance deve ser maior que o último lance mais a diferença mínima'
+		expect(page).to have_content 'Não foi possível fazer o lance'
 	end
 
   it 'com sucesso' do

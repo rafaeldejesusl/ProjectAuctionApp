@@ -27,7 +27,9 @@ describe 'Usuário visita tela de lotes finalizados' do
       Lot.create!(code: 'abc123456', start_date: 1.week.from_now, end_date: 3.week.from_now,
         minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
-    Bid.create!(value: 50, user: user, lot: lot)
+    travel_to 5.day.ago do
+      Bid.create!(value: 50, user: user, lot: lot)
+		end
     
 		# Act
     login_as user
@@ -51,7 +53,9 @@ describe 'Usuário visita tela de lotes finalizados' do
 			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.day.from_now,
 				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
 		end
-    Bid.create!(value: 50, user: user, lot: lot)
+    travel_to 5.day.ago do
+			Bid.create!(value: 50, user: user, lot: lot)
+		end
     
 		# Act
     login_as user
