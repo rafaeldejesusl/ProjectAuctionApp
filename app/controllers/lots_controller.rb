@@ -49,8 +49,7 @@ class LotsController < ApplicationController
   def approved
     @lot = Lot.find(params[:id])
 
-    if current_user != @lot.created_by && @lot.pending?
-      @lot.update_columns(status: :approved, approved_by_id: current_user.id)
+    if @lot.pending? && @lot.update(status: :approved, approved_by_id: current_user.id)
       redirect_to lot_path(@lot.id), notice: 'Lote aprovado com sucesso'
     else
       redirect_to lot_path(@lot.id), notice: 'Não foi possível aprovar o lote'
@@ -64,7 +63,7 @@ class LotsController < ApplicationController
   def close
     @lot = Lot.find(params[:id])
     if @lot.approved? && !@lot.bids.empty?
-      @lot.update_columns(status: :closed)
+      @lot.update(status: :closed)
       redirect_to finished_lots_path , notice: 'Lote encerrado com sucesso'
     else
       redirect_to finished_lots_path, notice: 'Não foi possível encerrar o lote'
@@ -74,7 +73,7 @@ class LotsController < ApplicationController
   def cancel
     @lot = Lot.find(params[:id])
     if @lot.approved? && @lot.bids.empty?
-      @lot.update_columns(status: :cancelled)
+      @lot.update(status: :cancelled)
       @lot.items.each do |i|
         i.update(lot_id: nil)
       end

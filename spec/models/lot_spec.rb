@@ -162,5 +162,19 @@ RSpec.describe Lot, type: :model do
 			# Assert
 			expect(result).to eq true
 		end
+
+		it 'falso quando o "Aprovado por" é igual ao criador' do
+			# Arrange
+      user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+        cpf: CPF.generate)
+			lot = Lot.new(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
+        minimum_value: 10, minimal_difference: 5, created_by: user, approved_by: user)
+
+			# Act
+			result = lot.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
   end
 end
