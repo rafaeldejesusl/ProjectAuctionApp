@@ -47,7 +47,7 @@ describe 'Usuário registra uma resposta' do
     expect(page).not_to have_content('Quanto é?')
 	end
 
-  it 'com dados inválidos' do
+  it 'com dados incompletos' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)

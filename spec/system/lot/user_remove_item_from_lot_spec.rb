@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário remove um item do lote' do
-  it 'quando lote está em andamento' do
+  it 'quando lote está pendente' do
 		# Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)

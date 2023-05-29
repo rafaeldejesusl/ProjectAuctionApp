@@ -51,7 +51,7 @@ describe 'Usuário cadastra um item' do
     expect(page).to have_content 'Categoria: Mobília'
   end
 
-  it 'com dados imcompletos' do
+  it 'com dados incompletos' do
     # Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)

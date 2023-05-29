@@ -1,7 +1,7 @@
 require 'rails_helper' # Importação das configurações de test
 
 describe 'Usuário visita tela inicial' do
-	it 'quando for não for administrador' do
+	it 'quando não for administrador' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)

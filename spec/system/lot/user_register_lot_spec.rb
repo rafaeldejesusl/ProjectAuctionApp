@@ -45,7 +45,7 @@ describe 'Usuário cadastra um lote' do
     expect(page).to have_content('Status: Pendente')
   end
 
-	it 'com dados imcompletos' do
+	it 'com dados incompletos' do
     # Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)

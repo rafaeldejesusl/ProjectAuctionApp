@@ -59,7 +59,7 @@ describe 'Usuário cadastra um lance' do
 		expect(page).not_to have_link 'Fazer um Lance'
 	end
 
-  it 'quando for maior que o valor mínimo' do
+  it 'quando lance inicial for maior que o valor mínimo' do
 		# Arrange
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
@@ -80,7 +80,7 @@ describe 'Usuário cadastra um lance' do
 		expect(page).to have_content 'Não foi possível fazer o lance'
 	end
 
-  it 'quando for maior que a diferença mínima' do
+  it 'quando lance não inicial for maior que último lance mais diferença mínima' do
 		# Arrange
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)

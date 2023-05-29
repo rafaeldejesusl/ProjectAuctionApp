@@ -20,7 +20,7 @@ describe 'Usuário cria uma pergunta' do
 		expect(page).to have_field('Dúvida')
 	end
 
-  it 'a partir da tela de leilão' do
+  it 'com sucesso' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
@@ -41,7 +41,7 @@ describe 'Usuário cria uma pergunta' do
 		expect(page).to have_content('Quanto é?')
 	end
 
-  it 'com dados inválidos' do
+  it 'com dados incompletos' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)

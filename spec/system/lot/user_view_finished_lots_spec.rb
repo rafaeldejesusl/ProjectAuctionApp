@@ -93,7 +93,7 @@ describe 'Usuário visita tela de lotes finalizados' do
     expect(page).not_to have_content 'Lote abc987654'
 	end
 
-  it 'e o item volta a ficar disponível' do
+  it 'e o item dos lotes cancelados volta a ficar disponível' do
     # Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)

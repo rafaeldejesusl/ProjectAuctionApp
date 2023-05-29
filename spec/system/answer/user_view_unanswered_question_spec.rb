@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário visualiza as perguntas sem resposta' do
-  it 'quando for admin' do
+  it 'quando for administrador' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
@@ -68,7 +68,7 @@ describe 'Usuário visualiza as perguntas sem resposta' do
     expect(page).not_to have_content 'abc987654'
 	end
 
-	it 'oculta uma pergunta' do
+	it 'e oculta uma pergunta' do
 		# Arrange
 		user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)

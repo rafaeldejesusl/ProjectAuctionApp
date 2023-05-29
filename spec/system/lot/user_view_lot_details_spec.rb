@@ -25,7 +25,7 @@ describe 'Usuário vê detalhes de um lote' do
     expect(page).to have_content('Não existem itens neste lote')
 	end
 
-  it 'e vê itens adicionados' do
+  it 'e vê itens adicionados ao lote' do
 		# Arrange
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
