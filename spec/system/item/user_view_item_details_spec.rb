@@ -6,8 +6,10 @@ describe 'Usuário vê detalhes de um item' do
     user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
     allow(SecureRandom).to receive(:alphanumeric).and_return('XYZ9876543')
-    Item.create!(name: 'Cadeira', description: 'Cadeira gamer', image_url: 'https://m.media-amazon.com/images/I/81fDZaQyoWL.jpg',
+    item = Item.create!(name: 'Cadeira', description: 'Cadeira gamer',
       weight: 1200, width: 50, height: 85, depth: 50, category: 'Mobília')
+    item.image.attach(io: File.open(Rails.root.join("spec/support/imgs/cadeira.jpg")), filename: 'cadeira.jpg')
+
 
 		# Act
 		login_as user
@@ -22,8 +24,7 @@ describe 'Usuário vê detalhes de um item' do
 		expect(page).to have_content('Peso: 1200 g')
 		expect(page).to have_content('Dimensão: 50 cm x 85 cm x 50 cm')
 		expect(page).to have_content('Categoria: Mobília')
-    img = find('img')
-		expect(img[:src]).to eq 'https://m.media-amazon.com/images/I/81fDZaQyoWL.jpg'
+    expect(page).to have_css("img[src*='cadeira']")
 	end
 
   it 'e volta para a tela de itens' do

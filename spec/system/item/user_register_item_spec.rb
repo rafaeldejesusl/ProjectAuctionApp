@@ -15,7 +15,7 @@ describe 'Usuário cadastra um item' do
 		# Assert
 		expect(page).to have_field('Nome')
 		expect(page).to have_field('Descrição')
-		expect(page).to have_field('URL da Imagem')
+		expect(page).to have_field('Imagem')
 		expect(page).to have_field('Peso')
 		expect(page).to have_field('Largura')
 		expect(page).to have_field('Altura')
@@ -36,7 +36,7 @@ describe 'Usuário cadastra um item' do
 		click_on 'Cadastrar Item'
     fill_in 'Nome', with: 'Cadeira'
     fill_in 'Descrição', with: 'Cadeira gamer'
-    fill_in 'URL da Imagem', with: 'https://m.media-amazon.com/images/I/81fDZaQyoWL.jpg'
+    attach_file 'Imagem', Rails.root.join("spec/support/imgs/cadeira.jpg")
     fill_in 'Peso', with: 1200
     fill_in 'Largura', with: 50
     fill_in 'Altura', with: 85

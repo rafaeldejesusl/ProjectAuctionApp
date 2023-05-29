@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item_params = params.require(:item).permit(:name, :image_url, :category,
+    item_params = params.require(:item).permit(:name, :image, :category,
       :description, :weight, :width, :height, :depth)
     @item = Item.new(item_params)
     if @item.save()

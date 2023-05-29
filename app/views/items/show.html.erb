@@ -10,9 +10,10 @@
 		<strong>Dimensão:</strong> <%= "#{@item.width} cm x #{@item.height} cm x #{@item.depth} cm" %>
 		<strong><%= Item.human_attribute_name(:category) %>:</strong> <%= @item.category %> 
 	</div>
-	<% if @item.image_url? %>
+	<% if @item.image.attached? %>
 		<div>
-			<%= image_tag(@item.image_url, :alt => "Imagem do item", class: "w-25 rounded border border-dark") %>
+			<p><strong><%= Item.human_attribute_name(:image) %>:</strong></p>
+			<%= image_tag(@item.image, :alt => "Imagem do item", class: "w-25 rounded border border-dark") %>
 		</div>
 	<% end %>
 </div>
