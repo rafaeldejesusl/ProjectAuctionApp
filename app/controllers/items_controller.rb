@@ -27,8 +27,8 @@ class ItemsController < ApplicationController
   end
 
   def remove
-    lot = Lot.find(params[:lot_id])
     item = Item.find(params[:id])
+    lot = Lot.find(item.lot_id)
 
     if lot.pending?
       item.lot_id = nil

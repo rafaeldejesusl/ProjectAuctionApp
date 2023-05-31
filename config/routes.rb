@@ -3,17 +3,16 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :auctions, only: [:show] do
     get 'search', on: :collection
+    get 'won', on: :collection
   end
-  get 'won_auctions', to: 'auctions#won'
-  resources :items, only: [:index, :show, :new, :create]
+  resources :items, only: [:index, :show, :new, :create] do
+    patch 'remove', on: :member
+  end
   resources :lots, only: [:index, :show, :new, :create] do
     get 'new_item', on: :member
     get 'finished', on: :collection
     get 'unanswered', on: :collection
     post 'add_item', on: :member
-    resources :items, only: [] do
-      patch 'remove', on: :member
-    end
     post 'approved', on: :member
     post 'close', on: :member
     post 'cancel', on: :member
