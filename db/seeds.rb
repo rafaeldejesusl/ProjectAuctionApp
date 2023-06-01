@@ -22,11 +22,11 @@ lot_b = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.m
   minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved, approved_by: other_user)
 Lot.insert_all([
   {code: 'xyz987654', start_date: 1.day.ago, end_date: 1.month.from_now,
-    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: user.id},
+    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: other_user.id},
   {code: 'xyz123456', start_date: 1.week.ago, end_date: 1.day.ago,
-    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: user.id},
+    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: other_user.id},
   {code: 'aei123456', start_date: 1.week.ago, end_date: 1.day.ago,
-    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: user.id}
+    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: other_user.id}
 ])
 Bid.insert_all([
   { value: 50, user_id: other_user.id, lot_id: 4 }
