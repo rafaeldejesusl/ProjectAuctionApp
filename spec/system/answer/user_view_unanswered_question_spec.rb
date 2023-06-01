@@ -15,11 +15,10 @@ describe 'Usuário visualiza as perguntas sem resposta' do
 		# Act
 		login_as user
 		visit('/')
-    click_on 'Perguntas'
 		
 		# Assert
     expect(current_path).to eq root_path
-    expect(page).to have_content 'Não possui autorização'
+    expect(page).not_to have_content 'Perguntas'
 	end
 
   it 'com sucesso' do

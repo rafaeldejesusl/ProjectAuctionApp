@@ -6,10 +6,9 @@ describe 'Usuário visita tela de itens' do
     
 		# Act
 		visit root_path
-    click_on 'Itens'
 		
 		# Assert
-		expect(current_path).to eq new_user_session_path
+		expect(page).not_to have_content 'Itens'
 	end
 
   it 'como administrador' do
@@ -20,11 +19,9 @@ describe 'Usuário visita tela de itens' do
 		# Act
     login_as user
 		visit root_path
-    click_on 'Itens'
 		
 		# Assert
-		expect(current_path).to eq root_path
-    expect(page).to have_content 'Não possui autorização'
+    expect(page).not_to have_content 'Itens'
 	end
 
   it 'e vê itens cadastrados' do

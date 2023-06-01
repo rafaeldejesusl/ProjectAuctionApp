@@ -6,10 +6,11 @@ describe 'Usuário visita tela de lotes' do
     
 		# Act
 		visit root_path
-    click_on 'Lotes'
 		
 		# Assert
-		expect(current_path).to eq new_user_session_path
+    within('nav') do
+		  expect(page).not_to have_content 'Lotes'
+    end
 	end
 
   it 'como administrador' do
@@ -20,11 +21,11 @@ describe 'Usuário visita tela de lotes' do
 		# Act
     login_as user
 		visit root_path
-    click_on 'Lotes'
 		
 		# Assert
-		expect(current_path).to eq root_path
-    expect(page).to have_content 'Não possui autorização'
+    within('nav') do
+		  expect(page).not_to have_content 'Lotes'
+    end
 	end
 
   it 'e vê lotes cadastrados' do

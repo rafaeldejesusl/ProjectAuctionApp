@@ -9,11 +9,9 @@ describe 'Usuário visita tela de lotes finalizados' do
 		# Act
     login_as user
 		visit root_path
-    click_on 'Finalizados'
 		
 		# Assert
-		expect(current_path).to eq root_path
-    expect(page).to have_content 'Não possui autorização'
+    expect(page).not_to have_content 'Finalizados'
 	end
 
   it 'e vê lotes finalizados' do
