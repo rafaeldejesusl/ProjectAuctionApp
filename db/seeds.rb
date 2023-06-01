@@ -11,10 +11,12 @@ user = User.create!(name: 'Ana', email: 'ana@leilaodogalpao.com.br', password: '
   cpf: CPF.generate)
 other_user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
   cpf: CPF.generate)
-item = Item.create!(name: 'Cadeira', description: 'Cadeira gamer', image_url: 'https://m.media-amazon.com/images/I/81fDZaQyoWL.jpg',
+User.create!(name: 'Bia', email: 'bia@email.com', password: 'password',
+  cpf: CPF.generate)
+item = Item.create!(name: 'Cadeira', description: 'Cadeira gamer',
   weight: 1200, width: 50, height: 85, depth: 50, category: 'Mobília')
 item.image.attach(io: File.open(Rails.root.join("spec/support/imgs/cadeira.jpg")), filename: 'cadeira.jpg')
-Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung', image_url: '',
+Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung',
   weight: 320, width: 15, height: 25, depth: 1, category: 'Eletrônico')
 lot_a = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
   minimum_value: 10, minimal_difference: 5, created_by: user)
@@ -26,10 +28,17 @@ Lot.insert_all([
   {code: 'xyz123456', start_date: 1.week.ago, end_date: 1.day.ago,
     minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: other_user.id},
   {code: 'aei123456', start_date: 1.week.ago, end_date: 1.day.ago,
+    minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: other_user.id},
+  {code: 'aei987654', start_date: 1.day.ago, end_date: 1.month.from_now,
     minimum_value: 10, minimal_difference: 5, created_by_id: user.id, status: :approved, approved_by_id: other_user.id}
 ])
 Bid.insert_all([
   { value: 50, user_id: other_user.id, lot_id: 4 }
 ])
-Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung', image_url: '',
+Bid.create!(value: 12, user_id: 1, lot_id: 6)
+Bid.create!(value: 20, user_id: 4, lot_id: 6)
+Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung',
   weight: 320, width: 15, height: 25, depth: 1, category: 'Eletrônico', lot_id: 5)
+Question.create!(content: 'Quais métodos de pagamento?', user_id: 4, lot_id: 2)
+Question.create!(content: 'Tem em outra cor?', user_id: 1, lot_id: 2)
+Answer.create!(content: 'No cartão ou pix', user_id: 2, question_id: 1)
