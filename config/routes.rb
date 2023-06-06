@@ -22,5 +22,5 @@ Rails.application.routes.draw do
       post 'hide', on: :member
     end
   end
-  resources :blocked_cpfs, only: [:index]
+  resources :blocked_cpfs, only: [:index, :new, :create]
 end

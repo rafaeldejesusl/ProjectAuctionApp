@@ -1,0 +1,28 @@
+<div class="text-center">
+	<h2>Novo Bloqueio de CPF</h2>
+
+	<% if(@blocked_cpf.errors.any?) %>
+		<div class="w-25 mx-auto">
+			<p>Verifique os erros abaixo:</p>
+			<ul>
+				<% @blocked_cpf.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="d-flex justify-content-center">
+		<%= form_with(model: @blocked_cpf) do |f| %>
+			<div class="form-group">
+				<%= f.label :cpf %>
+				<%= f.text_field :cpf, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= f.label :reason %>
+				<%= f.text_area :reason, class: "form-control" %>
+			</div>
+			<%= f.submit 'Enviar', class: "btn btn-primary my-2" %>
+		<% end %>
+	</div>
+</div>
