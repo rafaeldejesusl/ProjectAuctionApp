@@ -1,0 +1,12 @@
+<div class="text-center"> 
+  <h2>Lista de CPFs Bloqueados</h2>
+  <% if !@cpfs.empty? %>
+    <% @cpfs.each do |c| %>
+      <div class="my-2">
+        <%= c.cpf %> : <%= c.reason %>
+      </div>
+    <% end %>
+  <% else %> 
+    <p>Não existem CPFs bloqueados</p>
+  <% end %>
+</div> 

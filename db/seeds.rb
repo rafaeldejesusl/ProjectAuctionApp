@@ -13,6 +13,8 @@ other_user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', pas
   cpf: CPF.generate)
 User.create!(name: 'Bia', email: 'bia@email.com', password: 'password',
   cpf: CPF.generate)
+BlockedCpf.create!(cpf: CPF.generate, blocked_by: user, reason: "Não pagamento")
+BlockedCpf.create!(cpf: CPF.generate, blocked_by: user, reason: "Quebra dos termos de uso")
 item = Item.create!(name: 'Cadeira', description: 'Cadeira gamer',
   weight: 1200, width: 50, height: 85, depth: 50, category: 'Mobília')
 item.image.attach(io: File.open(Rails.root.join("spec/support/imgs/cadeira.jpg")), filename: 'cadeira.jpg')

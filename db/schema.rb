@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_29_175338) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_150640) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_175338) do
     t.datetime "updated_at", null: false
     t.index ["lot_id"], name: "index_bids_on_lot_id"
     t.index ["user_id"], name: "index_bids_on_user_id"
+  end
+
+  create_table "blocked_cpfs", force: :cascade do |t|
+    t.string "cpf"
+    t.integer "blocked_by_id", null: false
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blocked_by_id"], name: "index_blocked_cpfs_on_blocked_by_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -122,6 +131,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_175338) do
   add_foreign_key "answers", "users"
   add_foreign_key "bids", "lots"
   add_foreign_key "bids", "users"
+  add_foreign_key "blocked_cpfs", "users", column: "blocked_by_id"
   add_foreign_key "items", "lots"
   add_foreign_key "lots", "users", column: "approved_by_id"
   add_foreign_key "lots", "users", column: "created_by_id"
