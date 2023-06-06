@@ -1,8 +1,8 @@
 <div class="text-center"> 
   <h2>Lista de CPFs Bloqueados</h2>
 
-  <%= link_to "Bloquear novo CPF", new_blocked_cpf_path %>
-  
+  <%= link_to "Bloquear novo CPF", new_blocked_cpf_path, class: "btn btn-primary" %>
+
   <% if !@cpfs.empty? %>
     <% @cpfs.each do |c| %>
       <div class="my-2">
