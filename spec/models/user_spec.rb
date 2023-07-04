@@ -65,6 +65,22 @@ RSpec.describe User, type: :model do
 			# Assert
 			expect(result).to eq false
 		end
+
+		it 'falso quando o cpf é bloqueado' do
+			# Arrange
+			user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+				cpf: CPF.generate)
+			cpf = CPF.generate
+			blocked_cpf = BlockedCpf.create!(cpf: cpf, reason: "Não pagamento", blocked_by: user)
+			new_user = User.new(name: 'Joao', email: 'joao@email.com', password: 'password',
+        cpf: cpf)
+
+			# Act
+			result = new_user.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
 	end
 
   describe '#admin' do
