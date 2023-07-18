@@ -10,6 +10,9 @@
     <% if @lot.start_date <= Date.today && @lot.end_date >= Date.today %>
       <%= link_to 'Fazer um Lance', new_lot_bid_path(@lot.id), class: "btn btn-primary" %>  
     <% end %>
+    <% if user_signed_in? && !@lot.is_favorite?(current_user.id) %>
+      <%= button_to 'Marcar como Favorito', add_favorites_path(@lot.id), class: "btn btn-primary my-2" %>  
+    <% end %>
   </div>
   <div class="d-flex flex-column text-center">
     <strong><%= Lot.human_attribute_name(:start_date) %>:</strong>

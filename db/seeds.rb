@@ -44,3 +44,5 @@ Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung',
 Question.create!(content: 'Quais métodos de pagamento?', user_id: 4, lot_id: 2)
 Question.create!(content: 'Tem em outra cor?', user_id: 1, lot_id: 2)
 Answer.create!(content: 'No cartão ou pix', user_id: 2, question_id: 1)
+Favorite.create!(user_id: 1, lot_id: 2)
+Favorite.create!(user_id: 1, lot_id: 3)

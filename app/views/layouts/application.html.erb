@@ -23,6 +23,7 @@
         <%= link_to 'Lista de Bloqueados', blocked_cpfs_path, class: "pt-2" %>
       <% end %>
       <%= link_to 'Leilões Ganhos', won_auctions_path, class: "pt-2" %>
+      <%= link_to 'Favoritos', favorites_path, class: "pt-2" %>
       <% if user_signed_in? %>
         <div class="d-flex justify-content-around">
           <p class="pt-2 mx-2"><%= current_user.email %></p>

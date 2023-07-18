@@ -177,4 +177,35 @@ RSpec.describe Lot, type: :model do
 			expect(result).to eq false
 		end
   end
+
+	describe '#is_favorite?' do
+		it 'falso quando não for favorito' do
+			# Arrange
+      user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+        cpf: CPF.generate)
+			lot = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
+        minimum_value: 10, minimal_difference: 5, created_by: user)
+
+			# Act
+			result = lot.is_favorite?(user.id)
+
+			# Assert
+			expect(result).to eq false
+		end
+
+		it 'verdadeiro quando for favorito' do
+			# Arrange
+      user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+        cpf: CPF.generate)
+			lot = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
+        minimum_value: 10, minimal_difference: 5, created_by: user)
+			Favorite.create!(user: user, lot: lot)
+
+			# Act
+			result = lot.is_favorite?(user.id)
+
+			# Assert
+			expect(result).to eq true
+		end
+	end
 end

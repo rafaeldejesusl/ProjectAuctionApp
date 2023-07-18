@@ -23,4 +23,7 @@ Rails.application.routes.draw do
     end
   end
   resources :blocked_cpfs, only: [:index, :new, :create]
+  resources :favorites, only: [:index] do
+    post 'add/:lot_id', on: :collection, to: 'favorites#add', as: :add
+  end
 end

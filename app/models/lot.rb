@@ -13,6 +13,11 @@ class Lot < ApplicationRecord
 
   enum status: { pending: 0, approved: 5, closed: 10, cancelled: 15 }
 
+  def is_favorite?(user_id)
+    favorite = Favorite.where(user_id: user_id, lot_id: self.id)
+    !favorite.empty?
+  end
+
   private
 
   def start_date_is_future
