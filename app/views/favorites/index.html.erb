@@ -4,6 +4,7 @@
   <% @favorites.each do |f| %>
     <div>
       <%= link_to "Lote #{f.lot.code}", auction_path(f.lot.id) %>
+      <%= button_to 'Desmarcar Favorito', favorite_path(f.lot.id), method: :delete, class: "btn btn-primary my-2" %>  
     </div>
   <% end %>
 

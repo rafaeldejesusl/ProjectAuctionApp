@@ -11,4 +11,13 @@ class FavoritesController < ApplicationController
     favorite.save
     redirect_to auction_path(params[:lot_id]), notice: 'Lote salvo como favorito'
   end
+
+  def destroy
+    favorite = Favorite.where(lot_id: params[:lot_id], user_id: current_user.id)
+    favorite[0].destroy
+    if request.referer.include?('favorites')
+      return redirect_to favorites_path(), notice: 'Lote removido dos favoritos'
+    end
+    redirect_to auction_path(params[:lot_id]), notice: 'Lote removido dos favoritos'
+  end
 end
