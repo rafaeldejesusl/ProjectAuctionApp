@@ -3,17 +3,19 @@ require 'rails_helper'
 describe 'Usuário registra uma resposta' do
   it 'a partir da tela de perguntas' do
 		# Arrange
-		user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
+		user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+			cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Question.create!(content: "Quanto é?", user: user, lot: lot)
 		
 		# Act
-		login_as user
+		login_as admin
 		visit('/')
     click_on 'Perguntas'
     click_on 'Responder'
@@ -24,17 +26,19 @@ describe 'Usuário registra uma resposta' do
 
   it 'com sucesso' do
 		# Arrange
-		user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
+		user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+			cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Question.create!(content: "Quanto é?", user: user, lot: lot)
 		
 		# Act
-		login_as user
+		login_as admin
 		visit('/')
     click_on 'Perguntas'
     click_on 'Responder'
@@ -49,17 +53,19 @@ describe 'Usuário registra uma resposta' do
 
   it 'com dados incompletos' do
 		# Arrange
-		user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
+		user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+			cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Question.create!(content: "Quanto é?", user: user, lot: lot)
 		
 		# Act
-		login_as user
+		login_as admin
 		visit('/')
     click_on 'Perguntas'
     click_on 'Responder'

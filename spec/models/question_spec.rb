@@ -16,6 +16,21 @@ RSpec.describe Question, type: :model do
 			# Assert
 			expect(result).to eq false
 		end
+
+		it 'falso quando o criador for administrador' do
+			# Arrange
+      user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
+      lot = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
+        minimum_value: 10, minimal_difference: 5, created_by: user)
+			question = Question.new(content: "Quanto custa?", user: user, lot: lot)
+
+			# Act
+			result = question.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
   end
 
   describe 'tem a visibilidade' do

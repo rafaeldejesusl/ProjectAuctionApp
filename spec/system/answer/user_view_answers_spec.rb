@@ -3,15 +3,17 @@ require 'rails_helper'
 describe 'Usuário visualiza as respostas' do
   it 'na tela do leilão' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+      cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     question = Question.create!(content: "Quanto é?", user: user, lot: lot)
-    Answer.create!(content: "20 conto", user: user, question: question)
+    Answer.create!(content: "20 conto", user: admin, question: question)
 		
 		# Act
 		login_as user
@@ -25,16 +27,18 @@ describe 'Usuário visualiza as respostas' do
 
   it 'quando a visibilidade for verdadeira' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+      cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Question.create!(content: "Quanto é?", user: user, lot: lot)
     question = Question.create!(content: "Ser ou não ser?", user: user, lot: lot, visible: false)
-    Answer.create!(content: "20 conto", user: user, question: question)
+    Answer.create!(content: "20 conto", user: admin, question: question)
 		
 		# Act
 		login_as user

@@ -23,22 +23,24 @@ describe 'Usuário visualiza as perguntas sem resposta' do
 
   it 'com sucesso' do
 		# Arrange
-		user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
+		user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+			cpf: CPF.generate)
     lot = nil
     other_lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
       other_lot = Lot.create!(code: 'abc123456', start_date: 2.week.from_now, end_date: 3.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+        minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Question.create!(content: "Quanto é?", user: user, lot: lot)
     other_question = Question.create!(content: "Ser ou não ser?", user: user, lot: other_lot)
-    Answer.create!(content: "2 conto", user: user, question: other_question)
+    Answer.create!(content: "2 conto", user: admin, question: other_question)
 		
 		# Act
-		login_as user
+		login_as admin
 		visit('/')
     click_on 'Perguntas'
 		
@@ -69,17 +71,19 @@ describe 'Usuário visualiza as perguntas sem resposta' do
 
 	it 'e oculta uma pergunta' do
 		# Arrange
-		user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
       cpf: CPF.generate)
+		user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+			cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Question.create!(content: "Quanto é?", user: user, lot: lot)
 		
 		# Act
-		login_as user
+		login_as admin
 		visit('/')
     click_on 'Perguntas'
 		click_on 'Ocultar'
