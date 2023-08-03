@@ -51,6 +51,24 @@ RSpec.describe Bid, type: :model do
 			expect(result).to eq false
 		end
 
+		it 'falso quando o usuário é administrador' do
+			# Arrange
+			user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
+			lot = nil
+			travel_to 5.day.ago do
+				lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
+					minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+			end
+      bid = Bid.new(value: 50, lot: lot, user: user)
+      
+			# Act
+			result = bid.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
+
 		it 'falso quando o lance inicial é menor ou igual que o valor mínimo' do
 			# Arrange
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',

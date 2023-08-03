@@ -16,21 +16,23 @@ describe 'Usuário visita tela de lotes finalizados' do
 
   it 'e vê lotes finalizados' do
 		# Arrange
-    user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+    admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+      cpf: CPF.generate)
+    user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.day.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
       Lot.create!(code: 'abc123456', start_date: 1.week.from_now, end_date: 3.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+        minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     travel_to 5.day.ago do
       Bid.create!(value: 50, user: user, lot: lot)
 		end
     
 		# Act
-    login_as user
+    login_as admin
 		visit root_path
     click_on 'Finalizados'
 		
@@ -44,19 +46,21 @@ describe 'Usuário visita tela de lotes finalizados' do
 
   it 'e encerra o lote' do
 		# Arrange
-    user = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+    admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+      cpf: CPF.generate)
+    user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.day.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     travel_to 5.day.ago do
 			Bid.create!(value: 50, user: user, lot: lot)
 		end
     
 		# Act
-    login_as user
+    login_as admin
 		visit root_path
     click_on 'Finalizados'
     click_on 'Encerrar Lote'

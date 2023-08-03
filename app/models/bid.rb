@@ -4,6 +4,7 @@ class Bid < ApplicationRecord
   validates :value, presence: true
   validate :value_is_permitted
   validate :lot_permit_bid
+  validate :is_user
 
   private
 
@@ -25,5 +26,10 @@ class Bid < ApplicationRecord
     elsif !lot.approved?
       self.errors.add(:lot_id, ' deve estar aprovado')
     end
+  end
+
+  def is_user
+    return if !self.user
+    errors.add(:user, 'não pode ser administrador.') if user.admin?
   end
 end
