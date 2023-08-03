@@ -14,9 +14,7 @@ class Favorite < ApplicationRecord
   end
 
   def is_user
-    user = User.find(self.user_id)
-    if user.admin
-      self.errors.add(:user_id, 'não pode ser administrador.')
-    end
+    return if !self.user
+    self.errors.add(:user, 'não pode ser administrador.') if user.admin?
   end
 end
