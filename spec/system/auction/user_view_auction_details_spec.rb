@@ -3,12 +3,14 @@ require 'rails_helper'
 describe 'Usuário visita detalhes de um leilão' do
   it 'a partir da tela inicial' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 		
 		# Act
@@ -26,12 +28,14 @@ describe 'Usuário visita detalhes de um leilão' do
 
   it 'e vê itens do leilão' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Item.create!(name: 'Tablet', description: 'Tablet 10" da Samsung',
       weight: 320, width: 15, height: 25, depth: 1, category: 'Eletrônico')
@@ -56,12 +60,14 @@ describe 'Usuário visita detalhes de um leilão' do
 
 	it 'e vê último lance' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 1.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 		Bid.create!(value: 30, user: user, lot: lot)
     Bid.create!(value: 50, user: user, lot: lot)
@@ -78,11 +84,13 @@ describe 'Usuário visita detalhes de um leilão' do
 
 	it 'e volta para a tela inicial' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
 		travel_to 1.week.ago do
 			Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 		
 		# Act

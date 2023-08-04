@@ -4,10 +4,12 @@ RSpec.describe Question, type: :model do
   describe '#valid?' do
 		it 'falso quando o conteúdo é vazio' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
       lot = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user)
+        minimum_value: 10, minimal_difference: 5, created_by: admin)
 			question = Question.new(content: "", user: user, lot: lot)
 
 			# Act
@@ -36,10 +38,12 @@ RSpec.describe Question, type: :model do
   describe 'tem a visibilidade' do
 		it 'como verdadeira quando é criada' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
       lot = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user)
+        minimum_value: 10, minimal_difference: 5, created_by: admin)
 			question = Question.new(content: "Quanto é?", user: user, lot: lot)
 
 			# Act

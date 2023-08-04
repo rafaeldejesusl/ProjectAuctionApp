@@ -10,6 +10,7 @@ class Lot < ApplicationRecord
   validates :end_date, comparison: { greater_than: :start_date }
   validate :start_date_is_future, on: :create
   validate :approved_by_different_user
+  validate :created_by_admin
 
   enum status: { pending: 0, approved: 5, closed: 10, cancelled: 15 }
 
@@ -30,5 +31,10 @@ class Lot < ApplicationRecord
     if self.approved_by == self.created_by
       self.errors.add(:approved_by, ' deve ser diferente do criador.')
     end
+  end
+
+  def created_by_admin
+    return if !self.created_by
+    errors.add(:created_by, 'deve ser administrador.') unless created_by.admin?
   end
 end

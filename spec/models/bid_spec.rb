@@ -4,12 +4,14 @@ RSpec.describe Bid, type: :model do
   describe '#valid?' do
 		it 'falso quando o valor é vazio' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
 			lot = nil
 			travel_to 5.day.ago do
 				lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-					minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+					minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 			end
       bid = Bid.new(value: '', lot: lot, user: user)
       
@@ -35,12 +37,14 @@ RSpec.describe Bid, type: :model do
 
     it 'falso quando o usuário é vazio' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
 			lot = nil
 			travel_to 5.day.ago do
 				lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-					minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+					minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 			end
       bid = Bid.new(value: 50, lot: lot)
       
@@ -71,12 +75,14 @@ RSpec.describe Bid, type: :model do
 
 		it 'falso quando o lance inicial é menor ou igual que o valor mínimo' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
 			lot = nil
 			travel_to 5.day.ago do
 				lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-					minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+					minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 			end
       bid = Bid.new(value: 10, lot: lot, user: user)
       
@@ -89,12 +95,14 @@ RSpec.describe Bid, type: :model do
 
 		it 'falso quando o lance não inicial é menor que o último lance mais a diferença mínima' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
 			lot = nil
 			travel_to 5.day.ago do
 				lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-					minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+					minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 			end
 			Bid.create!(value: 20, lot: lot, user: user)
       bid = Bid.new(value: 24, lot: lot, user: user)
@@ -108,10 +116,12 @@ RSpec.describe Bid, type: :model do
 
 		it 'falso quando o lote não iniciou' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
       lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+        minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
       bid = Bid.new(value: 25, lot: lot, user: user)
       
 			# Act
@@ -123,12 +133,14 @@ RSpec.describe Bid, type: :model do
 
 		it 'falso quando o lote já finalizou' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
 			lot = nil
 			travel_to 5.day.ago do
 				lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.day.from_now,
-					minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+					minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 			end
       bid = Bid.new(value: 25, lot: lot, user: user)
       
@@ -141,12 +153,14 @@ RSpec.describe Bid, type: :model do
 
 		it 'falso quando o lote não foi aprovado' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
 			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
 			lot = nil
 			travel_to 5.day.ago do
 				lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 1.week.from_now,
-					minimum_value: 10, minimal_difference: 5, created_by: user, status: :pending)
+					minimum_value: 10, minimal_difference: 5, created_by: admin, status: :pending)
 			end
       bid = Bid.new(value: 50, lot: lot, user: user)
       

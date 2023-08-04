@@ -18,13 +18,15 @@ describe 'Usuário visita tela de seus lotes ganhos' do
       cpf: CPF.generate)
     other_user = User.create!(name: 'Ana', email: 'ana@email.com.br', password: 'password',
       cpf: CPF.generate)
-    lot_a = nil
+    admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+      cpf: CPF.generate)
+        lot_a = nil
     lot_b = nil
     travel_to 1.week.ago do
       lot_a = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.day.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+        minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
       lot_b = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 3.day.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: other_user, status: :approved)
+        minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
     end
     travel_to 5.day.ago do
       Bid.create!(value: 50, user: user, lot: lot_a)

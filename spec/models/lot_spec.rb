@@ -84,14 +84,30 @@ RSpec.describe Lot, type: :model do
 			expect(result).to eq false
 		end
 
+		it 'falso quando o "criado por" não é administrador' do
+			# Arrange
+			user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
+        cpf: CPF.generate)
+			lot = Lot.new(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
+        minimum_value: 10, minimal_difference: 5, created_by: user)
+
+			# Act
+			result = lot.valid?
+
+			# Assert
+			expect(result).to eq false
+		end
+
     it 'falso quando o código é repetido' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
       Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user)
+        minimum_value: 10, minimal_difference: 5, created_by: admin)
 			lot = Lot.new(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user)
+        minimum_value: 10, minimal_difference: 5, created_by: admin)
 
 			# Act
 			result = lot.valid?
@@ -181,10 +197,12 @@ RSpec.describe Lot, type: :model do
 	describe '#is_favorite?' do
 		it 'falso quando não for favorito' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
 			lot = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user)
+        minimum_value: 10, minimal_difference: 5, created_by: admin)
 
 			# Act
 			result = lot.is_favorite?(user.id)
@@ -195,10 +213,12 @@ RSpec.describe Lot, type: :model do
 
 		it 'verdadeiro quando for favorito' do
 			# Arrange
+			admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+        cpf: CPF.generate)
       user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password',
         cpf: CPF.generate)
 			lot = Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 1.week.from_now,
-        minimum_value: 10, minimal_difference: 5, created_by: user)
+        minimum_value: 10, minimal_difference: 5, created_by: admin)
 			Favorite.create!(user: user, lot: lot)
 
 			# Act

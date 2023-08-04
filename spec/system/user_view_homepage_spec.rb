@@ -44,13 +44,15 @@ describe 'Usuário visita tela inicial' do
 
 	it 'e vê lotes em andamento' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
 		travel_to 1.week.ago do
 			Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user)
+				minimum_value: 10, minimal_difference: 5, created_by: admin)
 			Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 		
 		# Act
@@ -65,13 +67,15 @@ describe 'Usuário visita tela inicial' do
 
 	it 'e vê lotes futuros' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
 		travel_to 1.week.ago do
 			Lot.create!(code: 'abc123456', start_date: 1.day.from_now, end_date: 5.day.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 			Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 		
 		# Act

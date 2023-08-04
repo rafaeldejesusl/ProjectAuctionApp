@@ -3,12 +3,14 @@ require 'rails_helper'
 describe 'Usuário visualiza as perguntas sem resposta' do
   it 'quando for administrador' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
 		user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Question.create!(content: "Quanto é?", user: user, lot: lot)
 		

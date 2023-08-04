@@ -3,11 +3,13 @@ require 'rails_helper'
 describe 'Usuário cadastra um lance' do
 	it 'quando estiver logado' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
 		travel_to 1.week.ago do
 			Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 
 		# Act
@@ -22,11 +24,13 @@ describe 'Usuário cadastra um lance' do
 
   it 'a partir da tela do leilão' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
 		travel_to 1.week.ago do
 			Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 
 		# Act
@@ -43,11 +47,13 @@ describe 'Usuário cadastra um lance' do
 
   it 'quando lote estiver em andamento' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
 		travel_to 1.week.ago do
 			Lot.create!(code: 'abc987654', start_date: 2.week.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 
 		# Act
@@ -61,11 +67,13 @@ describe 'Usuário cadastra um lance' do
 
   it 'quando lance inicial for maior que o valor mínimo' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
 		travel_to 1.week.ago do
 			Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
 
 		# Act
@@ -82,12 +90,14 @@ describe 'Usuário cadastra um lance' do
 
   it 'quando lance não inicial for maior que último lance mais diferença mínima' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Bid.create!(value: 11, user: user, lot: lot)
 
@@ -105,12 +115,14 @@ describe 'Usuário cadastra um lance' do
 
   it 'com sucesso' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Bid.create!(value: 11, user: user, lot: lot)
 
@@ -129,12 +141,14 @@ describe 'Usuário cadastra um lance' do
 
   it 'com dados incompletos' do
 		# Arrange
+		admin = User.create!(name: 'Joao', email: 'joao@leilaodogalpao.com.br', password: 'password',
+			cpf: CPF.generate)
     user = User.create!(name: 'Joao', email: 'joao@email.com.br', password: 'password',
       cpf: CPF.generate)
     lot = nil
 		travel_to 1.week.ago do
 			lot = Lot.create!(code: 'abc987654', start_date: 1.day.from_now, end_date: 3.week.from_now,
-				minimum_value: 10, minimal_difference: 5, created_by: user, status: :approved)
+				minimum_value: 10, minimal_difference: 5, created_by: admin, status: :approved)
 		end
     Bid.create!(value: 11, user: user, lot: lot)
 
